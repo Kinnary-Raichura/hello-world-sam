@@ -22,4 +22,8 @@ Resources:
             Path: /hello-main
             Method: GET
             RestApiId: !Ref ApiGatewayApi
-    
+Outputs:
+  ApiGatewayApiID:
+    Description: The ID of the API
+    Value: !Ref ApiGatewayApi
+
