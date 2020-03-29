@@ -20,7 +20,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri:
-      Handler: handler/lambdaHandler
+      Handler: hello.lambdaHandler
       Runtime: nodejs12.x
       Events:
         AuthApi:
