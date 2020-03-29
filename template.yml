@@ -23,7 +23,7 @@ Resources:
           Type: A
           AliasTarget:
             DNSName: !GetAtt ApiGatewayApi.RegionalDomainName
-            HostedZoneId: !GetAtt GatewayDomain.RegionalHostedZoneId
+            HostedZoneId: !GetAtt ApiGatewayApi.RegionalHostedZoneId
 
   HelloWorldFunction:
     Type: AWS::Serverless::Function
