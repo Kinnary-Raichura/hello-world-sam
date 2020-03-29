@@ -7,6 +7,13 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
+      Domain:
+        CertificateArn: pCertificateArn
+        BasePath:
+          - pVersion
+        DomainName: pCustomDomainName
+        Route53:
+          HostedZoneId: pHostedZoneId
       EndpointConfiguration: REGIONAL
       StageName: pStageName
   HelloWorldFunction:
