@@ -7,24 +7,8 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      Domain:
-        CertificateArn: pCertificateArn
-        BasePath:
-          - pVersion
-        DomainName: pCustomDomainName
       EndpointConfiguration: REGIONAL
       StageName: pStageName
-  Domain:
-    Type: AWS::Route53::RecordSetGroup
-    Properties:
-      HostedZoneId: pHostedZoneId
-      RecordSets:
-        - Name: pCustomDomainName
-          Type: A
-          AliasTarget:
-            DNSName: !GetAtt ApiGatewayApi.RegionalDomainName
-            HostedZoneId: !GetAtt ApiGatewayApi.RegionalHostedZoneId
-
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
