@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Globals:
+  Api:
+    OpenApiVersion: 3.0.1
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      Domain:
+        CertificateArn: pCertificateArn
+        BasePath:
+          - pVersion
+        DomainName: pCustomDomainName
+        Route53:
+          HostedZoneId: pHostedZoneId
+      EndpointConfiguration: REGIONAL
+      StageName: pStageName
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri:
+      Handler: handler/lambdaHandler
+      Runtime: nodejs12.x
+      Events:
+        AuthApi:
+          Type: Api
+          Properties:
+            Path: /hello-main
+            Method: GET
+            RestApiId: !Ref ApiGatewayApi

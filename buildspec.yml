@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+       nodejs: 12
+  build:
+    commands:
+      - sed -i.bak "s/\bpStageName\b/${STAGE_NAME}/g" template.yml
+      - sed -i.bak "s@\bpVersion\b@${VERSION}@g" template.yml
+      - sed -i.bak "s@\bpCertificateArn\b@${CERTIFICATE_ARN}@g" template.yml
+      - sed -i.bak "s/\bpCustomDomainName\b/${CUSTOM_DOMAIN_NAME}/g" template.yml
+      - sed -i.bak "s/\bpHostedZoneId\b/${HOSTED_ZONE_ID}/g" template.yml
+      - aws cloudformation package --template-file template.yml --s3-bucket ${BUCKET_NAME} --output-template-file packaged-template.yaml
+artifacts:
+  files:
+    - packaged-template.yaml
