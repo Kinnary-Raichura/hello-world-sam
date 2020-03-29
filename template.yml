@@ -25,7 +25,7 @@ Resources:
   Outputs:
     ApiGatewayRegionalName:  
       Description: The arn of SNS Topic used to request a CNAME record. Share this with the subaccounts authorized to create resource records.
-      Value: !GetAtt ApiGatewayApi.RegionalDomainName
+      Value: !GetAtt ApiGatewayApi.Arn
     #ApiGatewayRegionalHostedZoneId:
      #  Description: The Hosted zone id of the API
       # Value: !Ref ApiGatewayApi.RegionalHostedZoneId      
