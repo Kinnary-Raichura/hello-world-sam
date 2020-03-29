@@ -12,11 +12,9 @@ Resources:
         BasePath:
           - pVersion
         DomainName: pCustomDomainName
- #       Route53:
-  #        HostedZoneId: pHostedZoneId
       EndpointConfiguration: REGIONAL
       StageName: pStageName
-   Domain:
+  Domain:
     Type: AWS::Route53::RecordSetGroup
     Properties:
       HostedZoneId: pHostedZoneId
@@ -26,7 +24,7 @@ Resources:
           AliasTarget:
             DNSName: !GetAtt ApiGatewayApi.RegionalDomainName
             HostedZoneId: !GetAtt GatewayDomain.RegionalHostedZoneId
-            
+
   HelloWorldFunction:
     Type: AWS::Serverless::Function
     Properties:
