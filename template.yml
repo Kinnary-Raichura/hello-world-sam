@@ -28,14 +28,6 @@ Resources:
             Method: GET
             RestApiId: !Ref ApiGatewayApi
   
-  Route53CNAMERecord:
-    Type: Custom::A
-    Properties: 
-      ServiceToken: arn:aws:sns:us-east-1:739653925675:RequestRoute53CNAME
-      Source: pCustomDomainName
-      Target: !Join ['',['d-',!Ref ApiGatewayApi, !Sub '.execute-api.${AWS::Region}.amazonaws.com'] ]
-      HostedZone: pHostedZoneId
-
 Outputs:
   ApiGatewayApiID:
     Description: The ID of the API
