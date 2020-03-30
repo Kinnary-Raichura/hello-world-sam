@@ -7,6 +7,9 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
+      Domain:
+        CertificateArn: pCertificateArn
+        DomainName: pCustomDomainName
       EndpointConfiguration: REGIONAL
       StageName: pStageName
   HelloWorldFunction:
