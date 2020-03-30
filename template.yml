@@ -7,7 +7,12 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      EndpointConfiguration: PRIVATE
+      Domain:
+        CertificateArn: pCertificateArn
+        BasePath:
+          - pVersion
+        DomainName: pCustomDomainName        
+      EndpointConfiguration: REGIONAL
       StageName: pStageName
   HelloWorldFunction:
     Type: AWS::Serverless::Function
@@ -22,6 +27,15 @@ Resources:
             Path: /hello-main
             Method: GET
             RestApiId: !Ref ApiGatewayApi
+  
+  Route53CNAMERecord:
+    Type: Custom::A
+    Properties: 
+      ServiceToken: pCrossAccountServiceTokenARN
+      Source: pCustomDomainName
+      Target: !Join ['',['d-',!Ref ApiGatewayApi, !Sub '.execute-api.${AWS::Region}.amazonaws.com'] ]
+      HostedZone: pHostedZoneId
+
 Outputs:
   ApiGatewayApiID:
     Description: The ID of the API

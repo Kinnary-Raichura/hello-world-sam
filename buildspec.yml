@@ -10,7 +10,9 @@ phases:
       - sed -i.bak "s@\bpCertificateArn\b@${CERTIFICATE_ARN}@g" template.yml
       - sed -i.bak "s/\bpCustomDomainName\b/${CUSTOM_DOMAIN_NAME}/g" template.yml
       - sed -i.bak "s/\bpHostedZoneId\b/${HOSTED_ZONE_ID}/g" template.yml
+      - sed -i.bak "s@\bpCrossAccountServiceTokenArn\b@${CERTIFICATE_ARN_R53}@g" template.yml
       - aws cloudformation package --template-file template.yml --s3-bucket ${BUCKET_NAME} --output-template-file packaged-template.yaml
+
       #- aws cloudformation deploy --template-file packaged-template.yaml --stack-name my-sam-application-1 --capabilities CAPABILITY_IAM
 artifacts:
   files:
