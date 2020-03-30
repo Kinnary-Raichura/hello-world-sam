@@ -7,11 +7,6 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      Domain:
-        CertificateArn: pCertificateArn
-        BasePath:
-          - pVersion
-        DomainName: pCustomDomainName        
       EndpointConfiguration: REGIONAL
       StageName: pStageName
   HelloWorldFunction:
@@ -32,9 +27,3 @@ Outputs:
   ApiGatewayApiID:
     Description: The ID of the API
     Value: !Ref ApiGatewayApi
-  ApiGatewayApiId:
-    Description: The ID of the API
-    Value: !GetAtt ApiGatewayApi.regionalHostedZoneId
-  ApiGatewayApiName:
-    Description: The ID of the API
-    Value: !GetAtt ApiGatewayApi.regionalDomainName
