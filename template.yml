@@ -11,25 +11,25 @@ Resources:
         ResourcePolicy:
           CustomStatements: [
             {
-		            "Effect": "Allow",
-		            "Principal": "*",
-		            "Action": [
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": [
                   "execute-api:GET", 
                   "execute-api:OPTIONS", 
                   "execute-api:PUT", 
                   "execute-api:Invoke"
                   ],
-	          }, 
+            }, 
             {
-		            "Effect": "Allow",
-		            "Principal": "*",
-		            "Action": "execute-api:Invoke",
-		            "Condition": {
-			            "IpAddress": {
-				            "aws:SourceIp": "107.162.0.0/16"
-			              }
-		            }
-	          }
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "execute-api:Invoke",
+                "Condition": {
+                  "IpAddress": {
+                    "aws:SourceIp": "107.162.0.0/16"
+                    }
+                }
+            }
           ] 
       Domain:
         CertificateArn: pCertificateArn
